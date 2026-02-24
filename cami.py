@@ -127,6 +127,7 @@ libri = [
    ```
    """
 
+
 import json
 
 
@@ -149,10 +150,10 @@ def conta_per_genere(libri: list[dict]) -> dict[str, int] :
                   
       lista = filtra_per_genere(libri, q)
 
-      numero 1 = len(lista)
+      numero = len(lista)
       dic ={
          "genere": (q) ,
-         "Quantita": (numero1)
+         "quantita": (numero)
          }
       
 
@@ -161,17 +162,19 @@ def conta_per_genere(libri: list[dict]) -> dict[str, int] :
    return dic
 
 #------------------------------------------------
-#Punto C
+#Punto C FINITO 
 #------------------------------------------------
 
 def trova_libro_piu_recente(libri: list[dict]) -> dict | None :
    rec= 0 
+   save = {}
    for l in libri :
       if rec < l['anno']:
          rec = l['anno']
-   return rec 
+         save = l
+   
 
-
+   return save
 
 
 def calcola_media_anno(libri: list[dict]) -> float :
@@ -179,7 +182,7 @@ def calcola_media_anno(libri: list[dict]) -> float :
    if libri == [] :
 
       return 0.0
-   
+   somma = 0 
    for l in libri :
 
       somma = somma + l['anno']
@@ -191,9 +194,8 @@ def calcola_media_anno(libri: list[dict]) -> float :
    #Restituisce la media degli anni di pubblicazione come `float`Se la lista è vuota, restituisce `0.0`
 
 
-
 #------------------------------------------------
-#Punto B
+#Punto B FINITO
 #------------------------------------------------
 
 
@@ -205,14 +207,9 @@ def filtra_per_genere(libri: list[dict], genere: str) -> list[dict]:
          libri_filtrati.append(libro)
    return libri_filtrati
 
-# Restituisce una nuova lista con solo i libri il cui campo `"genere"` corrisponde a quello passato.
-
-
-
-
 
 #------------------------------------------------
-#Punto A
+#Punto A FINITO
 #------------------------------------------------
 
 
@@ -231,22 +228,69 @@ def carica_biblioteca(nome_file: str) -> list[dict] :
 
    try:
       with open(nome_file, "r") as file:
+
          libri = json.load(file)
+         
+         print(f'libri in archivio: {len(libri)} ')
+
          return libri
+         
    except FileNotFoundError:
       print(f"Errore: Il file '{nome_file}' non esiste.")
       return []
 
-main() -> None:
 
-   libri = [
+def main():
+
+   libri1 = [
     {"titolo": "Il piccolo principe", "genere": "Romanzo", "anno": 1943},
     {"titolo": "1984", "genere": "Fantascienza", "anno": 1949},
     {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
     {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
    ]  
 
-   nome.file= 'biblioteca.jason'
+   nome_file= "biblioteca.json"
+
+   salva_biblioteca(libri1, nome_file)
+   libri = carica_biblioteca(nome_file) 
+
+   genere = "Fantascienza"
+
+   lista_filtrata = filtra_per_genere(libri, genere)
+   print(f"libri di {genere}: {len(lista_filtrata)}")
+   for _ in  lista_filtrata:
+      print(f'- {_['titolo']}')
+
+   media = calcola_media_anno(libri)
+   print(f'Media anno di pubblicazione: {media}')
+
+   piu_recente= trova_libro_piu_recente(libri)
+   print(f'Libro più recente: {piu_recente['titolo']} ({piu_recente['anno']})')
+   
+   l_gen=conta_per_genere(libri)
+   print('Libri per genere:')
+   for h in in sorted(l_gen):
+      
+      print(f"{h['genere']}: {h['quantita']} ")
+
+    
+   
+
+   Nel `main()`:
+   - Chiama la funzione sui libri caricati.
+   - Stampa il risultato ordinato per genere (alfabetico).
+
+   **Esempio di output:**
+   ```
+   Libri per genere:
+   Fantasy: 1
+   Fantascienza: 2
+   Romanzo: 1
+   ```
+
+
+
+    
 
 
 if __name__ == "__main__":
