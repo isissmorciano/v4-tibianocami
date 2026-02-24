@@ -130,6 +130,27 @@ libri = [
 
 import json
 
+#------------------------------------------------
+#Punto E
+#------------------------------------------------
+
+def modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> tuple[bool, str, list[dict]] :
+      t=input('inserisci titolo esatto:')
+
+      n_a=input('inserisci il nuovo anno:')
+      
+
+      for l in libri :
+
+         if l['nome'] == t:
+            
+           l['anno'] = n_a
+   
+          return True , il libro è stato trovato e modificato, libri_modificati
+         else:
+            return False, il libro non  è stato trovato e non è stato modificato, libri_modificati
+   
+
 
 #------------------------------------------------
 #Punto D
@@ -140,10 +161,10 @@ def conta_per_genere(libri: list[dict]) -> dict[str, int] :
    l_generi = []
    for l in libri :
       if l['genere'] not in l_generi :
-         l_genri.append(l['genere'])
+         l_generi.append(l['genere'])
 
          
-   
+   diz=[]
    for q in l_generi :
 
       lista = []
@@ -155,11 +176,9 @@ def conta_per_genere(libri: list[dict]) -> dict[str, int] :
          "genere": (q) ,
          "quantita": (numero)
          }
+      diz.append(dic)
       
-
-
-   
-   return dic
+   return diz
 
 #------------------------------------------------
 #Punto C FINITO 
@@ -268,26 +287,26 @@ def main():
    print(f'Libro più recente: {piu_recente['titolo']} ({piu_recente['anno']})')
    
    l_gen=conta_per_genere(libri)
+   
    print('Libri per genere:')
-   for h in in sorted(l_gen):
+
+   for x in l_gen:
       
-      print(f"{h['genere']}: {h['quantita']} ")
+     print(f"{x['genere']}: {x['quantita']} ")
 
     
    
 
-   Nel `main()`:
-   - Chiama la funzione sui libri caricati.
-   - Stampa il risultato ordinato per genere (alfabetico).
+   while True :
+      i = input('scegli num :')
+      print('1 modifica anno')
+      print('2 modifica anno')
+      print('3 esci ')
+      if i == 1:
 
-   **Esempio di output:**
-   ```
-   Libri per genere:
-   Fantasy: 1
-   Fantascienza: 2
-   Romanzo: 1
-   ```
-
+         r,m,l=modifica_anno_libro(libri",titolo: str, nuovo_anno: int") #non ho tempo lo so fare e praticamente la stessa cosa solo che le chiedi prima di chiamare la funzione
+         if r :
+            print('m')
 
 
     
