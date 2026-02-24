@@ -142,13 +142,13 @@ def modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> tupl
 
       for l in libri :
 
-         if l['nome'] == t:
+         if l['titolo'] == t:
             
-           l['anno'] = n_a
+            l['anno'] = n_a
    
-          return True , il libro è stato trovato e modificato, libri_modificati
+            return True , 'il libr è stato trovato e modificato', libri_modificati
          else:
-            return False, il libro non  è stato trovato e non è stato modificato, libri_modificati
+            return False, 'il libr non  è stato trovato e non è stato modificato', libri_modificati
    
 
 
@@ -298,15 +298,24 @@ def main():
    
 
    while True :
-      i = input('scegli num :')
+      
       print('1 modifica anno')
-      print('2 modifica anno')
-      print('3 esci ')
-      if i == 1:
+      
+      print('2 esci ')
+      i = input('scegli num :')
 
-         r,m,l=modifica_anno_libro(libri",titolo: str, nuovo_anno: int") #non ho tempo lo so fare e praticamente la stessa cosa solo che le chiedi prima di chiamare la funzione
-         if r :
+      if i == 1:
+         
+         t=str(input('inserisci titolo esatto:'))
+
+         n_a=float(input('inserisci il nuovo anno:'))
+
+         r,m,l=modifica_anno_libro(libri,t, n_a)
+          #non ho tempo lo so fare e praticamente la stessa cosa solo che le chiedi prima di chiamare la funzione
+         if r is True :
             print('m')
+      if i == 2:
+         break
 
 
     
