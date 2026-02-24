@@ -22,116 +22,154 @@ libri = [
 
 ---
 
-### Punto A – Salvataggio e caricamento JSON 
+   ### Punto A – Salvataggio e caricamento JSON 
 
-1. Definisci `salva_biblioteca(libri: list[dict], nome_file: str) -> None`:
-   Salva la lista in formato JSON con indentazione. Stampa un messaggio di conferma.
+      1. Definisci `salva_biblioteca(libri: list[dict], nome_file: str) -> None`:
+         Salva la lista in formato JSON con indentazione. Stampa un messaggio di conferma.
 
-2. Definisci `carica_biblioteca(nome_file: str) -> list[dict]`:
-   Carica e restituisce la lista da JSON.
-   Se il file non esiste, stampa un messaggio di errore e restituisce `[]`.
+      2. Definisci `carica_biblioteca(nome_file: str) -> list[dict]`:
+         Carica e restituisce la lista da JSON.
+         Se il file non esiste, stampa un messaggio di errore e restituisce `[]`.
 
-            Nel `main()`:
-            - Chiama `salva_biblioteca` per salvare su `"biblioteca.json"`.
-            - Chiama `carica_biblioteca` e stampa quanti libri sono stati caricati.
+         Nel `main()`:
+                  - Chiama `salva_biblioteca` per salvare su `"biblioteca.json"`.
+                  - Chiama `carica_biblioteca` e stampa quanti libri sono stati caricati.
 
-            **Esempio di output:**
-            ```
-            File 'biblioteca.json' salvato con successo.
-            Libri in archivio: 4
-```
+                  **Esempio di output:**
+                  ```
+                  File 'biblioteca.json' salvato con successo.
+                  Libri in archivio: 4
+      ```
 
 
 ---
 
 ### Punto B – Filtro per genere
 
-1. finiDesci `filtra_per_genere(libri: list[dict], genere: str) -> list[dict]`:
-   Restituisce una nuova lista con solo i libri il cui campo `"genere"` corrisponde a quello passato.
+   1. finiDesci `filtra_per_genere(libri: list[dict], genere: str) -> list[dict]`:
+      Restituisce una nuova lista con solo i libri il cui campo `"genere"` corrisponde a quello passato.
 
-Nel `main()`:
-- Usa i libri caricati nel Punto A.
-- Filtra per `"Fantascienza"` e stampa quanti ne hai trovati e i loro titoli.
+   Nel `main()`:
+   - Usa i libri caricati nel Punto A.
+   - Filtra per `"Fantascienza"` e stampa quanti ne hai trovati e i loro titoli.
 
-**Esempio di output:**
-```
-Libri di Fantascienza: 2
-- 1984
-- Dune
-```
+   **Esempio di output:**
+   ```
+   Libri di Fantascienza: 2
+   - 1984
+   - Dune
+   ```
 
 ---
 
 ### Punto C – Statistiche 
 
-1. Definisci `calcola_media_anno(libri: list[dict]) -> float`:
-   Restituisce la media degli anni di pubblicazione come `float`.
-   Se la lista è vuota, restituisce `0.0`.
+   1. Definisci `calcola_media_anno(libri: list[dict]) -> float`:
+      Restituisce la media degli anni di pubblicazione come `float`.
+      Se la lista è vuota, restituisce `0.0`.
 
-2. Definisci `trova_libro_piu_recente(libri: list[dict]) -> dict | None`:
-   Restituisce il dizionario del libro con l'anno più alto.
-   Se la lista è vuota, restituisce `None`.
+   2. Definisci `trova_libro_piu_recente(libri: list[dict]) -> dict | None`:
+      Restituisce il dizionario del libro con l'anno più alto.
+      Se la lista è vuota, restituisce `None`.
 
-Nel `main()`:
-- Chiama entrambe le funzioni sui libri caricati e stampa i risultati.
+   Nel `main()`:
+   - Chiama entrambe le funzioni sui libri caricati e stampa i risultati.
 
-**Esempio di output:**
-```
-Media anno di pubblicazione: 1963.5
-Libro più recente: Harry Potter (1997)
-```
+   **Esempio di output:**
+   ```
+   Media anno di pubblicazione: 1963.5
+   Libro più recente: Harry Potter (1997)
+   ```
 
----
+   ---
 
 ### Punto D – Conta libri per genere
 
-1. Definisci `conta_per_genere(libri: list[dict]) -> dict[str, int]`:
-   Restituisce un dizionario dove le chiavi sono i generi e i valori sono il numero di libri per genere.
+   1. Definisci `conta_per_genere(libri: list[dict]) -> dict[str, int]`:
+      Restituisce un dizionario dove le chiavi sono i generi e i valori sono il numero di libri per genere.
 
-Nel `main()`:
-- Chiama la funzione sui libri caricati.
-- Stampa il risultato ordinato per genere (alfabetico).
+   Nel `main()`:
+   - Chiama la funzione sui libri caricati.
+   - Stampa il risultato ordinato per genere (alfabetico).
 
-**Esempio di output:**
-```
-Libri per genere:
-Fantasy: 1
-Fantascienza: 2
-Romanzo: 1
-```
+   **Esempio di output:**
+   ```
+   Libri per genere:
+   Fantasy: 1
+   Fantascienza: 2
+   Romanzo: 1
+   ```
 
 ---
 
 ### Punto E – Bonus: Modifica anno di un libro 
 
-Definisci `modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> tuple[bool, str, list[dict]]`:
-- Trova il libro con quel titolo (ricerca esatta) e aggiorna l'anno.
-- Restituisce una tupla `(success, messaggio, libri_modificati)` dove `success` è `True` se il libro è stato trovato e modificato, altrimenti `False`. La lista modificata è sempre restituita.
+   Definisci `modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> tuple[bool, str, list[dict]]`:
+   - Trova il libro con quel titolo (ricerca esatta) e aggiorna l'anno.
+   - Restituisce una tupla `(success, messaggio, libri_modificati)` dove `success` è `True` se il libro è stato trovato e modificato, altrimenti `False`. La lista modificata è sempre restituita.
 
-Nel `main()`, dopo il Punto D:
-- Chiedi all'utente un titolo e un nuovo anno.
-- Chiama `modifica_anno_libro` e stampa il messaggio.
-- Se la modifica è riuscita, richiama `salva_biblioteca` per salvare le modifiche su `"biblioteca.json"`.
+   Nel `main()`, dopo il Punto D:
+   - Chiedi all'utente un titolo e un nuovo anno.
+   - Chiama `modifica_anno_libro` e stampa il messaggio.
+   - Se la modifica è riuscita, richiama `salva_biblioteca` per salvare le modifiche su `"biblioteca.json"`.
 
-**Esempio di interazione:**
-```
-Inserisci titolo da modificare: 1984
-Inserisci nuovo anno: 1950
-Libro '1984' aggiornato con anno 1950. Totale libri: 4
-```
+   **Esempio di interazione:**
+   ```
+   Inserisci titolo da modificare: 1984
+   Inserisci nuovo anno: 1950
+   Libro '1984' aggiornato con anno 1950. Totale libri: 4
+   ```
 
-**Se il libro non esiste:**
-```
-Inserisci titolo da modificare: Titanic
-Libro 'Titanic' non trovato.
-```
-"""
+   **Se il libro non esiste:**
+   ```
+   Inserisci titolo da modificare: Titanic
+   Libro 'Titanic' non trovato.
+   ```
+   """
 
 import json
+
+
+#------------------------------------------------
+#Punto D
+#------------------------------------------------
+
+def conta_per_genere(libri: list[dict]) -> dict[str, int] :
+
+   l_generi = []
+   for l in libri :
+      if l['genere'] not in l_generi :
+         l_genri.append(l['genere'])
+
+         
+   
+   for q in l_generi :
+
+      lista = []
+                  
+      lista = filtra_per_genere(libri, q)
+
+      numero 1 = len(lista)
+      dic ={
+         "genere": (q) ,
+         "Quantita": (numero1)
+         }
+      
+
+
+   
+   return dic
 
 #------------------------------------------------
 #Punto C
 #------------------------------------------------
+
+def trova_libro_piu_recente(libri: list[dict]) -> dict | None :
+   rec= 0 
+   for l in libri :
+      if rec < l['anno']:
+         rec = l['anno']
+   return rec 
 
 
 
@@ -139,13 +177,15 @@ import json
 def calcola_media_anno(libri: list[dict]) -> float :
    
    if libri == [] :
+
       return 0.0
    
    for l in libri :
-      suomma = somma + lé['anno']
+
+      somma = somma + l['anno']
    
-   somma_voti = sum(studente["voto"] for studente in studenti)
-   return somma_voti / len(studenti)
+   
+   return somma / len(libri)
 
 
    #Restituisce la media degli anni di pubblicazione come `float`Se la lista è vuota, restituisce `0.0`
@@ -205,7 +245,7 @@ main() -> None:
     {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
     {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
    ]  
-   
+
    nome.file= 'biblioteca.jason'
 
 
